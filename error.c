@@ -8,7 +8,7 @@ void	flag_error(char c)
 	exit(1);
 }
 
-void	error_agr(char *arg)
+void	error_arg(char *arg)
 {
 	ft_putstr("There is no file or directory named \"");
 	ft_putstr(arg);

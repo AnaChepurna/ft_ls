@@ -31,8 +31,8 @@ FILES = ft_lstprint.c ft_striter.c ft_lstrm.c ft_striteri.c \
 	  ft_lstget.c ft_strchr.c ft_strsub.c ft_lstgetindex.c ft_strclr.c \
 	  ft_strtrim.c ft_lstiter.c ft_strcmp.c ft_tolower.c ft_lstlen.c \
 	  ft_strcpy.c ft_toupper.c ft_lstmap.c ft_strdel.c \
-	  ft_lstnew.c ft_strdup.c ft_lstpop.c ft_strequ.c ft_strswap.c \
-	  ft_strsort.c  ft_arrlen.c \
+	  ft_lstnew.c ft_strdup.c ft_lstpop.c ft_strequ.c ft_swap.c \
+	  ft_strsort.c  ft_arrlen.c 
 O_FILES = $(addprefix $(OBJ), $(FILES:.c=.o))
 
 all: $(NAME)

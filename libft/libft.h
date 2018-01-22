@@ -101,8 +101,8 @@ t_list				*ft_lstpop(t_list **alst);
 t_list				*ft_lstrm(t_list *alst, int index);
 char				**ft_lsttoarr(t_list *lst);
 void				ft_arrfree(char ***res);
-void				ft_swap(void *o1, void *o2);
+void				ft_swap(void **o1, void **o2);
 void				ft_strsort(char **arr);
-size_t				ft_arrlen(void *arr);
+size_t				ft_arrlen(void **arr);
 
 #endif
