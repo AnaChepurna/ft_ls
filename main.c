@@ -8,7 +8,7 @@ void	place_lists(t_list **file, t_list **dir, char *name)
 	{
 		if (!stat(name, st))
 		{
-			if (S_ISDIR(st.st_mode))
+			if (S_ISDIR(st->st_mode))
 				ft_lstadd(dir, ft_lstnew(name, ft_strlen(name)));
 			else
 				ft_lstadd(file, ft_lstnew(name, ft_strlen(name)));
@@ -22,12 +22,12 @@ void	place_lists(t_list **file, t_list **dir, char *name)
 int	main (int c, char **v)
 {
 	t_list	*file;
-	t_tist	*dir;
+	t_list	*dir;
 	int	i;
 
 	g_flag = new_flag();
-	files = NULL;
-	dirs = NULL;
+	file = NULL;
+	dir = NULL;
 	i = 1;
 	while (i < c)
 	{

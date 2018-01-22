@@ -16,14 +16,6 @@ t_flag		*new_flag(void)
 	return (res);
 }
 
-static void	flag_error(char c)
-{
-	ft_putstr("error! undefined flag \"");
-	ft_putchar(c);
-	ft_putstr("\" is found!\n");
-	exit(1);
-}
-
 void		handle_flags(char *str)
 {
 	while (*str)

@@ -2,6 +2,8 @@
 #include <sys/ioctl.h>
 #include <errno.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 typedef struct	s_colform
 {
@@ -41,3 +43,9 @@ t_flag	*g_flag;
 */
 t_flag		*new_flag(void);
 void		handle_flags(char *str);
+
+/*
+ *errors.c
+*/
+void		flag_error(char c);
+void		error_arg(char *arg);

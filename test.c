@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+#include "libft/libft.h"
+
 int main(void)
 {
 	struct stat *st;
@@ -15,4 +17,5 @@ int main(void)
 	stat("a.out", st);
 	if (st)
 		printf("%d\n", st->st_mode);
+	ft_putstr("lol!\n");
 }
