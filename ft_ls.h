@@ -49,3 +49,5 @@ void		handle_flags(char *str);
 */
 void		flag_error(char c);
 void		error_arg(char *arg);
+
+void		place_lists(t_list **file, t_list **dir, char *name);

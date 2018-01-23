@@ -14,8 +14,7 @@ void	place_lists(t_list **file, t_list **dir, char *name)
 				ft_lstadd(file, ft_lstnew(name, ft_strlen(name)));
 		}
 		else
-			//error_arg(name);
-			flag_error(*name);
+			error_arg(name);
 		free(st);
 	}
 }
