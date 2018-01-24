@@ -16,7 +16,6 @@ void	place_lists(t_list **file, t_list **dir, char *name)
 {
 	struct stat *st;
 
-	ft_putstr("lol!\n");
 	if ((st = (struct stat *)malloc(sizeof(struct stat))))
 	{
 		if (!stat(name, st))

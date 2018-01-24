@@ -12,6 +12,8 @@
 
 #include "libft.h"
 
+#include <stdio.h>
+
 size_t	ft_lstlen(t_list *begin)
 {
 	if (!begin)

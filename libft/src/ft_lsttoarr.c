@@ -22,13 +22,7 @@ char	**ft_lsttoarr(t_list *lst)
 		i = 0;
 		while (lst)
 		{
-			if ((res[i] = (char *)malloc(sizeof(char) * lst->content_size)))
-				ft_memcpy((void *)(res + i), lst->content, lst->content_size);
-			else
-			{
-				ft_arrfree(&res);
-				return (res);
-			}
+			res[i] = ft_strdup(lst->content);
 			lst = lst->next;
 			i++;
 		}

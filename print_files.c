@@ -12,16 +12,15 @@
 
 #include "ft_ls.h"
 
-/*static void	sort(char **arr)
+static void	sort(char **arr)
 {
 	ft_strsort(arr);
-}*/
+}
 
 void		print_files(char **arr)
 {
-	//sort(arr);
+	sort(arr);
 	//if flags
-	ft_putstr("heh!\n");
 	print_columns(arr);
 	if (g_flag->R)
 		make_dir_list(arr);

@@ -30,7 +30,5 @@ int	main (int c, char **v)
 		g_flag->title = 1;
 	if (!file && !dir)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
-	ft_putstr("nuuu!\n");
-	ft_lstprint(file);
 	print_files(ft_lsttoarr(file));
 }
