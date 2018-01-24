@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 18:55:50 by achepurn          #+#    #+#             */
-/*   Updated: 2017/11/25 22:42:43 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/01/24 20:28:51 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	**ft_lsttoarr(t_list *lst)
 				ft_arrfree(&res);
 				return (res);
 			}
+			lst = lst->next;
+			i++;
 		}
 		res[i] = NULL;
 	}

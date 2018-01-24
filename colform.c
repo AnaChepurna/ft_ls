@@ -4,6 +4,9 @@ t_colform	*new_colform(char **list)
 {
 	t_colform	*res;
 
+	int i = 0;
+	while (list[i])
+		ft_putendl(list[i++]);
 	if((res = (t_colform *)malloc(sizeof(t_colform))))
 	{
 		res->list = list;
@@ -20,7 +23,7 @@ t_colform	*change_lines(t_colform *form, int number)
 	int	lost;
 
 	lost = 0;
-	if (number <= form0>words)
+	if (number <= form->words)
 	{
 		if (form->words % number)
 			lost = 1;

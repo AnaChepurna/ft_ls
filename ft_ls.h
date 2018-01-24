@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/24 18:42:37 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/24 19:57:14 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft/libft.h"
 #include <sys/ioctl.h>
 #include <errno.h>
@@ -50,4 +62,13 @@ void		handle_flags(char *str);
 void		flag_error(char c);
 void		error_arg(char *arg);
 
+/*
+ *place.c
+*/
+void		make_dir_list(char **arr);
 void		place_lists(t_list **file, t_list **dir, char *name);
+
+/*
+ *print_files.c
+*/
+void		print_files(char **arr);

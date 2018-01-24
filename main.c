@@ -1,23 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/24 18:13:10 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/24 20:22:53 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
-
-void	place_lists(t_list **file, t_list **dir, char *name)
-{
-	struct stat *st;
-
-	if ((st = (struct stat *)malloc(sizeof(struct stat))))
-	{
-		if (!stat(name, st))
-		{
-			if (S_ISDIR(st->st_mode))
-				ft_lstadd(dir, ft_lstnew(name, ft_strlen(name)));
-			else
-				ft_lstadd(file, ft_lstnew(name, ft_strlen(name)));
-		}
-		else
-			error_arg(name);
-		free(st);
-	}
-}
 
 int	main (int c, char **v)
 {
@@ -28,17 +21,16 @@ int	main (int c, char **v)
 	g_flag = new_flag();
 	file = NULL;
 	dir = NULL;
-	i = 1;
-	while (i < c)
-	{
-		if (v[i][0] == '-')
+	i = 0;
+	while (++i < c && v[i][0] == '-')
 			handle_flags(v[i] + 1);
-		else
-			place_lists(&file, &dir, v[i]);
-		i++;
-	}
-	if ((file && dir) || (dir && dir->next))
+	while (i < c)
+		place_lists(&file, &dir, v[i++]);
+	if ((file && dir) || (dir && dir->next) || g_flag->R)
 		g_flag->title = 1;
 	if (!file && !dir)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
+	ft_putstr("nuuu!\n");
+	ft_lstprint(file);
+	print_files(ft_lsttoarr(file));
 }
