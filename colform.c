@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   colform.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/26 18:12:40 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/26 18:12:42 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 t_colform	*new_colform(char **list)
 {
 	t_colform	*res;
 
-	if((res = (t_colform *)malloc(sizeof(t_colform))))
+	if ((res = (t_colform *)malloc(sizeof(t_colform))))
 	{
 		res->list = list;
 		res->words = ft_arrlen((void *)list);

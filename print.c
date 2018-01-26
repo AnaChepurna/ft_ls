@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_files.c                                      :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/24 19:18:21 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/26 20:20:21 by achepurn         ###   ########.fr       */
+/*   Created: 2018/01/26 17:41:52 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/26 20:21:03 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		sort(char **arr)
+void		print_spaces(int number)
 {
-	ft_strsort(arr);
+	while (number > 0)
+	{
+		ft_putchar(' ');
+		number--;
+	}
 }
 
-void		print_files(char **arr, char *path)
+void		print_title(char *name)
 {
-	sort(arr);
-	//if flags
-	if (path && g_flag->title)
-		print_title(path);
-	print_columns(arr);
-	if (g_flag->rec)
-		make_dir_list(arr, path);
-	ft_arrfree(&arr);
+	ft_putstr(name);
+	ft_putstr(":\n");
 }

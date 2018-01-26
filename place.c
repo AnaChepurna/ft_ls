@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:04:33 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/24 20:07:18 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/01/26 20:21:08 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	place_lists(t_list **file, t_list **dir, char *name)
 	}
 }
 
-void	make_dir_list(char **arr)
+void	make_dir_list(char **arr, char *path)
 {
 	t_list	*dir;
 
@@ -45,8 +45,5 @@ void	make_dir_list(char **arr)
 		arr++;
 	}
 	if (dir)
-	{
-		print_files(ft_lsttoarr(dir));
-	//	ft_lstdel(dir //);
-	}
+		handle_dirs(ft_lsttoarr(dir), path);
 }

@@ -1,44 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_columns.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/26 16:42:12 by achepurn          #+#    #+#             */
+/*   Updated: 2018/01/26 18:13:38 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-static int		get_width(void)
+int					get_width(void)
 {
 	struct winsize w;
-	
+
 	ioctl(0, TIOCGWINSZ, &w);
 	return (w.ws_col);
 }
 
-static int		fitting(t_colform *form, int width)
+static int			find_width(t_colform *form, int n)
 {
 	int	i;
-	int	j;
-	int	max;
+	int max;
+	int index;
+	int len;
+
+	i = 0;
+	max = 0;
+	while (i < form->lines)
+	{
+		index = n * form->lines + i;
+		if (index < form->words)
+		{
+			len = ft_strlen((form->list)[index]) + 2;
+			if (len > max)
+				max = len;
+		}
+		i++;
+	}
+	return (max);
+}
+
+static int			fitting(t_colform *form, int width)
+{
+	int	i;
+	int formlen;
 
 	if (form->lines == form->words)
 	{
 		(form->widths)[0] = width;
 		return (1);
 	}
-	i = 0;
-	while (i < form->columns)
-	{
-		j = 0;
-		max = 0;
-		while (j < form->lines)
-		{
-			int index = i * form->lines + j;
-			if (index < form->words)
-			{
-				int len = ft_strlen((form->list)[index]) + 2;
-				if (len > max)
-					max = len;
-			}
-			j++;				
-		}
-		(form->widths)[i] = max;
-		i++;
-	}
-	int formlen = 0;
+	i = -1;
+	while (++i < form->columns)
+		(form->widths)[i] = find_width(form, i);
+	formlen = 0;
 	i = 0;
 	while (i < form->columns)
 	{
@@ -52,8 +70,8 @@ static int		fitting(t_colform *form, int width)
 
 static t_colform	*get_columns(char **list)
 {
-	t_colform *res;
-	int	console;
+	t_colform	*res;
+	int			console;
 
 	console = get_width();
 	res = new_colform(list);
@@ -64,27 +82,20 @@ static t_colform	*get_columns(char **list)
 	return (res);
 }
 
-static void	print_spaces(int number)
+void				print_columns(char **v)
 {
-	while (number > 0)
-	{
-		ft_putchar(' ');
-		number--;
-	}
-}
-
-void		print_columns(char **v)
-{
-	t_colform 	*form;
+	t_colform	*form;
 	size_t		c;
 	size_t		index;
+	int			i;
+	int			j;
 
 	c = ft_arrlen((void *)v);
 	form = get_columns(v);
-	int j = 0;
+	j = 0;
 	while (j < form->lines)
 	{
-		int i = 0;
+		i = 0;
 		while (i < form->columns)
 		{
 			index = i * form->lines + j;

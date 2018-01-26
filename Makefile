@@ -7,7 +7,10 @@ SRC = 	main.c \
 	place.c \
 	print_columns.c \
 	print_files.c \
-	colform.c
+	colform.c \
+	print.c \
+	read_direct.c
+
 all: $(NAME)
 
 $(NAME):
@@ -15,3 +18,8 @@ $(NAME):
 
 fclean: 
 	rm $(NAME)
+
+dir:
+	make -C libft
+
+re: fclean dir all
