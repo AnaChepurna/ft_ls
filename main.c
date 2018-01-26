@@ -30,7 +30,8 @@ int	main(int c, char **v)
 		g_flag->title = 1;
 	if (!file && !dir)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
-	print_files(ft_lsttoarr(file), NULL);
+	if (file)
+		print_files(ft_lsttoarr(file), NULL);
 	if (dir)
 		handle_dirs(ft_lsttoarr(dir), ft_strdup(""));
 }

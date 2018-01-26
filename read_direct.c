@@ -39,6 +39,8 @@ void			read_dir(char *path)
 {
 	t_list	*list;
 
+	ft_putstr(path);
+	ft_putstr("in reading (read_dir)");
 	list = get_files(path);
 	print_files(ft_lsttoarr(list), path);
 	//lst_del
@@ -48,14 +50,21 @@ void			handle_dirs(char **dirs, char *path)
 {
 	char	*buf;
 
+int i = 0;
+while (dirs[i])
+{
+ft_putendl(dirs[i]);
+i++;
+}
 	sort(dirs);
-	buf = ft_strlen(path) > 0 ? ft_strcat(path, "/") : ft_strdup(path);
 	while (*dirs)
 	{
+		buf = ft_strlen(path) > 0 ? ft_strcat(path, "/") : ft_strdup(path);
+		ft_putendl(buf);
 		read_dir(ft_strcat(buf, *dirs));
 		dirs++;
 	}
-	free(path);
-	free(buf);
-	ft_arrfree(&dirs);
+//	free(path);
+//	free(buf);
+//	ft_arrfree(&dirs);
 }
