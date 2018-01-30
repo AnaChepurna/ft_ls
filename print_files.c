@@ -14,15 +14,21 @@
 
 void		sort(char **arr)
 {
+	//if flag
 	ft_strsort(arr);
 }
 
 void		print_files(char **arr, char *path)
 {
+	static int n = 0;
 	sort(arr);
-	//if flags
+	if (n == 1)
+		ft_putstr("\n");
+	else
+		n = 1;
 	if (path && g_flag->title)
 		print_title(path);
+	//if flag
 	print_columns(arr);
 	if (g_flag->rec)
 		make_dir_list(arr, path);

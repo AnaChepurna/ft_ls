@@ -12,24 +12,27 @@
 
 #include "ft_ls.h"
 
-void	place_lists(t_list **file, t_list **dir, char *name)
+void	place_lists(t_list **file, t_list **dir, char *path, char *name)
 {
 	struct stat *st;
+	char		*obj;
 
+	obj = path ? get_dirname(path, name) : ft_strdup(name);
 	if ((st = (struct stat *)malloc(sizeof(struct stat))))
 	{
-		if (!stat(name, st))
+		if (!stat(obj, st))
 		{
 			if (S_ISDIR(st->st_mode))
-				ft_lstadd(dir, ft_lstnew(name, ft_strlen(name)));
+				ft_lstadd(dir, ft_lstnew(obj, ft_strlen(obj) + 1));
 			else if (file)
-				ft_lstadd(file, ft_lstnew(name, ft_strlen(name)));
+				ft_lstadd(file, ft_lstnew(obj, ft_strlen(obj) + 1));
 		}
 		else
 		{
 			error_arg(name);
 			//free(st);
 		}
+		free(obj);
 		//free(st);
 	}
 }
@@ -41,9 +44,10 @@ void	make_dir_list(char **arr, char *path)
 	dir = NULL;
 	while (*arr)
 	{
-		place_lists(NULL, &dir, *arr);
+		place_lists(NULL, &dir, path, *arr);
 		arr++;
 	}
+	//ft_lstadd(&dir, ft_lst)
 	if (dir)
-		handle_dirs(ft_lsttoarr(dir), path);
+		handle_dirs(ft_lsttoarr(dir));
 }

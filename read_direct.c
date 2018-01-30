@@ -12,6 +12,23 @@
 
 #include "ft_ls.h"
 
+char	*get_dirname(char *path, char *name)
+{
+	char	*res;
+	char	*buf;
+	int		len;
+
+	if (!path)
+		return (ft_strdup(name));
+	len = ft_strlen(path);
+	while (path[--len] == '/')
+		path[len] = '\0';
+	buf = ft_strjoin(path, "/");
+	res = ft_strjoin(buf, name);
+	free(buf);
+	return (res);
+}	
+
 static t_list	*get_files(char *name)
 {
 	DIR		*dir;
@@ -29,7 +46,7 @@ static t_list	*get_files(char *name)
 					ft_lstnew(file->d_name, ft_strlen(file->d_name)));
 		else if (file->d_name[0] != '.')
 			ft_lstaddend(&list,
-					ft_lstnew(file->d_name, ft_strlen(file->d_name)));
+					ft_lstnew(file->d_name, ft_strlen(file->d_name) + 1));
 	}
 	closedir(dir);
 	return (list);
@@ -39,29 +56,17 @@ void			read_dir(char *path)
 {
 	t_list	*list;
 
-	ft_putstr(path);
-	ft_putstr("in reading (read_dir)");
 	list = get_files(path);
 	print_files(ft_lsttoarr(list), path);
 	//lst_del
 }
 
-void			handle_dirs(char **dirs, char *path)
+void			handle_dirs(char **dirs)
 {
-	char	*buf;
-
-int i = 0;
-while (dirs[i])
-{
-ft_putendl(dirs[i]);
-i++;
-}
 	sort(dirs);
 	while (*dirs)
 	{
-		buf = ft_strlen(path) > 0 ? ft_strcat(path, "/") : ft_strdup(path);
-		ft_putendl(buf);
-		read_dir(ft_strcat(buf, *dirs));
+		read_dir(*dirs);
 		dirs++;
 	}
 //	free(path);

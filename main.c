@@ -25,7 +25,7 @@ int	main(int c, char **v)
 	while (++i < c && v[i][0] == '-')
 		handle_flags(v[i] + 1);
 	while (i < c)
-		place_lists(&file, &dir, v[i++]);
+		place_lists(&file, &dir, NULL, v[i++]);
 	if ((file && dir) || (dir && dir->next) || g_flag->rec)
 		g_flag->title = 1;
 	if (!file && !dir)
@@ -33,5 +33,5 @@ int	main(int c, char **v)
 	if (file)
 		print_files(ft_lsttoarr(file), NULL);
 	if (dir)
-		handle_dirs(ft_lsttoarr(dir), ft_strdup(""));
+		handle_dirs(ft_lsttoarr(dir));
 }

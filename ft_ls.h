@@ -69,7 +69,7 @@ void			error_arg(char *arg);
  ** place.c
 */
 void			make_dir_list(char **arr, char *name);
-void			place_lists(t_list **file, t_list **dir, char *name);
+void			place_lists(t_list **file, t_list **dir, char *path, char *name);
 
 /*
  ** print_files.c
@@ -86,5 +86,6 @@ void			print_title(char *title);
 /*
  ** read_direct.c
 */
-void			handle_dirs(char **dirs, char *path);
+void			handle_dirs(char **dirs);
+char			*get_dirname(char *path, char *name);
 #endif
