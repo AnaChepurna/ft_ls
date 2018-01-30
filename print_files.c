@@ -14,8 +14,9 @@
 
 void		sort(char **arr)
 {
-	//if flag
 	ft_strsort(arr);
+	if (g_flag->r)
+		ft_arrrev((void **)arr);
 }
 
 void		print_files(char **arr, char *path)

@@ -44,7 +44,8 @@ void	make_dir_list(char **arr, char *path)
 	dir = NULL;
 	while (*arr)
 	{
-		place_lists(NULL, &dir, path, *arr);
+		if (!ft_strequ(*arr, ".") && !ft_strequ(*arr, ".."))
+			place_lists(NULL, &dir, path, *arr);
 		arr++;
 	}
 	//ft_lstadd(&dir, ft_lst)

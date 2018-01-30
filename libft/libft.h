@@ -104,5 +104,6 @@ void				ft_arrfree(char ***res);
 void				ft_swap(void **o1, void **o2);
 void				ft_strsort(char **arr);
 size_t				ft_arrlen(void **arr);
+void				ft_arrrev(void	**arr);
 
 #endif

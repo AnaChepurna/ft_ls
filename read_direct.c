@@ -43,7 +43,7 @@ static t_list	*get_files(char *name)
 	{
 		if (g_flag->a)
 			ft_lstaddend(&list,
-					ft_lstnew(file->d_name, ft_strlen(file->d_name)));
+					ft_lstnew(file->d_name, ft_strlen(file->d_name) + 1));
 		else if (file->d_name[0] != '.')
 			ft_lstaddend(&list,
 					ft_lstnew(file->d_name, ft_strlen(file->d_name) + 1));
