@@ -9,7 +9,8 @@ SRC = 	main.c \
 	print_files.c \
 	colform.c \
 	print.c \
-	read_direct.c
+	read_direct.c \
+	time.c
 
 all: $(NAME)
 

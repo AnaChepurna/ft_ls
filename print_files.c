@@ -12,9 +12,11 @@
 
 #include "ft_ls.h"
 
-void		sort(char **arr)
+void		sort(char **arr, char *path)
 {
 	ft_strsort(arr);
+	if (g_flag->t)
+		time_sort(path, arr);
 	if (g_flag->r)
 		ft_arrrev((void **)arr);
 }
@@ -22,7 +24,7 @@ void		sort(char **arr)
 void		print_files(char **arr, char *path)
 {
 	static int n = 0;
-	sort(arr);
+	sort(arr, path);
 	if (n == 1)
 		ft_putstr("\n");
 	else

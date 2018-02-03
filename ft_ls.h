@@ -75,7 +75,7 @@ void			place_lists(t_list **file, t_list **dir, char *path, char *name);
  ** print_files.c
 */
 void			print_files(char **arr, char *dir);
-void			sort(char **arr);
+void			sort(char **arr, char *path);
 
 /*
  ** print.c
@@ -88,4 +88,9 @@ void			print_title(char *title);
 */
 void			handle_dirs(char **dirs);
 char			*get_dirname(char *path, char *name);
+
+/*
+ ** time.c
+*/
+void			time_sort(char *path, char **name);
 #endif

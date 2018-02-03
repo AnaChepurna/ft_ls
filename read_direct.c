@@ -63,7 +63,7 @@ void			read_dir(char *path)
 
 void			handle_dirs(char **dirs)
 {
-	sort(dirs);
+	sort(dirs, NULL);
 	while (*dirs)
 	{
 		read_dir(*dirs);
