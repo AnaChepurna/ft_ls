@@ -20,6 +20,15 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+# define RED		"\x1B[31m"
+# define GREEN		"\x1B[32m"
+# define YELLOW		"\x1B[33m"
+# define BLUE		"\x1B[34m"
+# define MAGENTA	"\x1B[35m"
+# define CYN		"\x1B[36m"
+# define WHITE		"\x1B[37m"
+# define RESET		"\x1B[0m"
+
 typedef struct	s_colform
 {
 	char		**list;
@@ -82,15 +91,20 @@ void			sort(char **arr, char *path);
 */
 void			print_spaces(int number);
 void			print_title(char *title);
+void			print_file(char *path, char *name);
 
 /*
  ** read_direct.c
 */
 void			handle_dirs(char **dirs);
-char			*get_dirname(char *path, char *name);
+char			*get_fullname(char *path, char *name);
 
 /*
  ** time.c
 */
 void			time_sort(char *path, char **name);
+/*
+ ** mac_columns.c
+ */
+void			print_maccolumns(char **arr, char *path);
 #endif

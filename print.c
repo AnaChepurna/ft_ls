@@ -26,3 +26,19 @@ void		print_title(char *name)
 	ft_putstr(name);
 	ft_putstr(":\n");
 }
+
+void		print_file(char *path, char *name)
+{
+	char		*fullname;
+	struct stat	st;
+
+	fullname = get_fullname(path, name);
+	if (!stat(fullname, &st))
+	{
+		if (S_ISDIR(st.st_mode))
+			ft_putstr(BLUE);
+		ft_putstr(name);
+		ft_putstr(RESET);
+	}
+	free(fullname);
+}

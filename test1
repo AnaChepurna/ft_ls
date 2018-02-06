@@ -1,0 +1,22 @@
+a.out
+colform.c
+error.c
+flag.c
+ft_ls
+ft_ls.h
+libft
+main.c
+Makefile
+place.c
+print.c
+print_columns.c
+print_files.c
+read_direct.c
+test1
+test.c
+time.c
+Дмитрий
+Привет
+a.out	   flag.c   libft     place.c	       print_files.c  test2   Дмитрий
+colform.c  ft_ls    main.c    print.c	       read_direct.c  test.c  Привет
+error.c    ft_ls.h  Makefile  print_columns.c  test1	      time.c

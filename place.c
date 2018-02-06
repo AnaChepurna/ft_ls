@@ -14,27 +14,20 @@
 
 void	place_lists(t_list **file, t_list **dir, char *path, char *name)
 {
-	struct stat *st;
+	struct stat st;
 	char		*obj;
 
-	obj = path ? get_dirname(path, name) : ft_strdup(name);
-	if ((st = (struct stat *)malloc(sizeof(struct stat))))
+	obj = path ? get_fullname(path, name) : ft_strdup(name);
+	if (!stat(obj, &st))
 	{
-		if (!stat(obj, st))
-		{
-			if (S_ISDIR(st->st_mode))
-				ft_lstadd(dir, ft_lstnew(obj, ft_strlen(obj) + 1));
-			else if (file)
-				ft_lstadd(file, ft_lstnew(obj, ft_strlen(obj) + 1));
-		}
-		else
-		{
-			error_arg(name);
-			//free(st);
-		}
-		free(obj);
-		//free(st);
+		if (S_ISDIR(st.st_mode))
+			ft_lstadd(dir, ft_lstnew(obj, ft_strlen(obj) + 1));
+		else if (file)
+			ft_lstadd(file, ft_lstnew(obj, ft_strlen(obj) + 1));
 	}
+	else
+		error_arg(name);
+	free(obj);
 }
 
 void	make_dir_list(char **arr, char *path)

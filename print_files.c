@@ -32,7 +32,7 @@ void		print_files(char **arr, char *path)
 	if (path && g_flag->title)
 		print_title(path);
 	//if flag
-	print_columns(arr);
+	print_maccolumns(arr, path);
 	if (g_flag->rec)
 		make_dir_list(arr, path);
 	ft_arrfree(&arr);

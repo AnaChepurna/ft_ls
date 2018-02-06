@@ -10,7 +10,8 @@ SRC = 	main.c \
 	colform.c \
 	print.c \
 	read_direct.c \
-	time.c
+	time.c \
+	mac_columns.c
 
 all: $(NAME)
 

@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-char	*get_dirname(char *path, char *name)
+char	*get_fullname(char *path, char *name)
 {
 	char	*res;
 	char	*buf;

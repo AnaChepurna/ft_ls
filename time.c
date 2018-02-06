@@ -38,7 +38,7 @@ void	time_sort(char *path, char **name)
 		i = 0;
 		while (name[i])
 		{
-			fullname = get_dirname(path, name[i]);
+			fullname = get_fullname(path, name[i]);
 			time[i] = ctime(fullname);
 			free(fullname);
 			i++;
