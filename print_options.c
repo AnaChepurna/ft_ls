@@ -30,4 +30,23 @@ void	print_permission(struct stat st)
 	write_or_not(st.st_mode & S_IROTH, 'r');
 	write_or_not(st.st_mode & S_IWOTH, 'w');
 	write_or_not(st.st_mode & S_IXOTH, 'x');
+	ft_putchar(' ');
+}
+
+char	*get_user(struct stat st)
+{
+	struct passwd *p;
+
+	p = getpwduid(st.st_uid);
+	return (p->pw_name);
+	//free?
+}
+
+char	*get_group(struct stat st)
+{
+	struct group g;
+
+	g = getgrgid(st.st_gid);
+	return (g->gr_name);
+	//free?
 }

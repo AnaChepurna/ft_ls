@@ -34,4 +34,7 @@ int	main(int c, char **v)
 		print_files(ft_lsttoarr(file), NULL);
 	if (dir)
 		handle_dirs(ft_lsttoarr(dir));
+	//free dir
+	//free file
+	//free g_flag
 }

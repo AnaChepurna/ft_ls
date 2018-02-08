@@ -19,14 +19,15 @@
 # include <dirent.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <pwd.h>
 
 # define RED		"\x1B[31m"
 # define GREEN		"\x1B[32m"
 # define YELLOW		"\x1B[33m"
 # define BLUE		"\x1B[34m"
 # define MAGENTA	"\x1B[35m"
-# define CYN		"\x1B[36m"
-# define WHITE		"\x1B[37m"
+# define CYAN		"\x1B[36m"
+# define WHIsTE		"\x1B[37m"
 # define RESET		"\x1B[0m"
 
 typedef struct	s_colform
@@ -37,6 +38,29 @@ typedef struct	s_colform
 	int			lines;
 	int			*widths;
 }				t_colform;
+
+
+typedef struct	s_flag
+{
+	int			title;
+	int			r;
+	int			rec;
+	int			l;
+	int			a;
+	int			t;
+}				t_flag;
+
+typedef struct s_mstat
+{
+	int			link;
+	int			uid;
+	int			gid;
+	int			size;
+	int			day;
+	int			all_size;
+}				t_mstat;
+
+t_flag	*g_flag;
 
 /*
  ** colform.c
@@ -49,18 +73,6 @@ t_colform		*change_lines(t_colform *form, int number);
 */
 void			print_columns(char **v);
 int				get_width(void);
-
-typedef struct	s_flag
-{
-	int			title;
-	int			r;
-	int			rec;
-	int			l;
-	int			a;
-	int			t;
-}				t_flag;
-
-t_flag	*g_flag;
 
 /*
  ** flag.c
@@ -103,8 +115,23 @@ char			*get_fullname(char *path, char *name);
  ** time.c
 */
 void			time_sort(char *path, char **name);
+
 /*
  ** mac_columns.c
- */
+*/
 void			print_maccolumns(char **arr, char *path);
+
+/*
+ ** print_options.c
+*/
+void	print_type(struct stat st);
+void	print_permission(struct stat st);
+char	*get_user(struct stat st);
+char	*get_group(struct stat st);
+
+/*
+** print_options2./
+*/
+
+
 #endif
