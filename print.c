@@ -42,3 +42,9 @@ void		print_file(char *path, char *name)
 	}
 	free(fullname);
 }
+
+void		print_dirsize(int	size)
+{
+	ft_putnbr(size);
+	ft_putchar('\n');
+}

@@ -1,42 +1,59 @@
 #include "ft_ls.h"
 
-t_mastat		*new_mstat(struct stat st)
+t_mstat		*new_mstat(void)
 {
 	t_mstat	*res;
 
-	if (res = (t_mstat *)malloc(sizeof(t_mstat)))
+	if ((res = (t_mstat *)malloc(sizeof(t_mstat))))
 	{
-		res->link = get_ranks(st.st_mlink);
-		res->uid = ft_strlen(get_user(st.st_uid));
-		res->gid = ft_strlen(get_group(st.st_gid));
-		res->size = get_ranks(st.st_size);
+		res->link = 0;
+		res->uid = 0;
+		res->gid = 0;
+		res->size = 0;
 		res->day = 0;
+		res->all_size = 0;
 	}
 	return (res);
 }
 
-off_t			ultimate_stat(char *path, char **arr, struct stat *max)
+void		ultimate_stat(char *path, char **arr, t_mstat *m)
 {
 	char		*fullname;
-	off_t		all_size;
+	off_t		size;
+	nlink_t		link;
 	struct stat	st;
+	size_t		i;
 
+	size = 0;
+	link = 0;
 	while (*arr)
 	{
 		fullname = get_fullname(path, *arr);
 		stat(fullname, &st);
-		if (st.st_nlink > max->st_nlink)
-			max->st_nlink = st.st_nlink;
-		if (st.st_size > max->st_size)
-			max->st_size = st.st_size;
-		if (ft_strlen(get_user(st.st_uid)) >
-			ft_strlen(get_user(max->st_uid)))
-			max->st_uid = st.st_uid;
-		if (ft_strlen(get_group(st.st_uid)) >
-			ft_strlen(get_group(max->st_gid)))
-			max->st_gid = st.st_gid;
+		size = size < st.st_size ? st.st_size : size;
+		m->all_size += st.st_size;
+		link = link < st.st_nlink ? st.st_nlink : link;
+		m->uid = ((int)(i = ft_strlen(get_user(st)))) > m->uid ? (int)i : m->uid;
+		if ((int)(i = ft_strlen(get_group(st))) > m->gid)
+			m->gid = i;
 		free(fullname);
 		arr++;
 	}
-	return (all_size);
+	m->size = get_ranks(size);
+	m->link = get_ranks(link);
+}
+
+void		print_options(char *path, char **arr)
+{
+	t_mstat	*m;
+
+	m = new_mstat();
+	ultimate_stat(path, arr, m);
+	print_dirsize(m->all_size);
+	while (*arr)
+	{
+		print_fileoptions(path, *arr, m);
+		arr++;
+	}
+	free(m);
 }

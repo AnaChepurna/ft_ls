@@ -11,7 +11,10 @@ SRC = 	main.c \
 	print.c \
 	read_direct.c \
 	time.c \
-	mac_columns.c
+	mac_columns.c \
+	print_options.c \
+	print_options2.c \
+	ultimate_stat.c
 
 all: $(NAME)
 

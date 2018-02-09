@@ -6,9 +6,8 @@ void	print_type(struct stat st)
 		ft_putchar('-');
 	else if (S_ISDIR(st.st_mode))
 		ft_putchar('d');
-	else if (S_IFLNC(st.st_mode))
+	else if (S_ISLNK(st.st_mode))
 		ft_putchar('l');
-	ft_putchar(' ');
 }
 
 void	write_or_not(int bool, char c)
@@ -37,14 +36,14 @@ char	*get_user(struct stat st)
 {
 	struct passwd *p;
 
-	p = getpwduid(st.st_uid);
+	p = getpwuid(st.st_uid);
 	return (p->pw_name);
 	//free?
 }
 
 char	*get_group(struct stat st)
 {
-	struct group g;
+	struct group *g;
 
 	g = getgrgid(st.st_gid);
 	return (g->gr_name);

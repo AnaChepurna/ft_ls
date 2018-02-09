@@ -20,6 +20,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <pwd.h>
+# include <grp.h>
 
 # define RED		"\x1B[31m"
 # define GREEN		"\x1B[32m"
@@ -57,7 +58,7 @@ typedef struct s_mstat
 	int			gid;
 	int			size;
 	int			day;
-	int			all_size;
+	off_t		all_size;
 }				t_mstat;
 
 t_flag	*g_flag;
@@ -104,6 +105,7 @@ void			sort(char **arr, char *path);
 void			print_spaces(int number);
 void			print_title(char *title);
 void			print_file(char *path, char *name);
+void			print_dirsize(int	size);
 
 /*
  ** read_direct.c
@@ -130,8 +132,14 @@ char	*get_user(struct stat st);
 char	*get_group(struct stat st);
 
 /*
-** print_options2./
+** print_options2.c
 */
+int				get_ranks(unsigned int num);
+void			print_fileoptions(char *path, char *name, t_mstat *m);
 
+/*
+** ultimate_stat.c
+*/
+void		print_options(char *path, char **arr);
 
 #endif
