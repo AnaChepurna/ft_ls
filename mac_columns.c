@@ -8,7 +8,7 @@ static size_t	find_maxlen(char **arr)
 	max = 0;
 	while (*arr)
 	{
-		if ((buf = ft_strlen(*arr)) > max)
+		if ((buf = ft_wstrlen(*arr)) > max)
 			max = buf;
 		arr++;
 	}
@@ -35,7 +35,7 @@ static void		print_format(int columns, size_t len, char **arr, char *path)
 			print_file(path, arr[index]);
 			index += lines;
 			if (++j != columns && number > index)
-				print_spaces(len - ft_strlen(arr[index - lines]));
+				print_spaces(len - ft_wstrlen(arr[index - lines]));
 			else
 				j = columns;
 		}

@@ -34,7 +34,7 @@ static int			find_width(t_colform *form, int n)
 		index = n * form->lines + i;
 		if (index < form->words)
 		{
-			len = ft_strlen((form->list)[index]) + 2;
+			len = ft_wstrlen((form->list)[index]) + 2;
 			if (len > max)
 				max = len;
 		}
@@ -102,7 +102,7 @@ void				print_columns(char **v)
 			if (index < c)
 			{
 				ft_putstr(v[index]);
-				print_spaces(form->widths[i] - ft_strlen(v[index]));
+				print_spaces(form->widths[i] - ft_wstrlen(v[index]));
 			}
 			i++;
 		}

@@ -29,6 +29,21 @@ void			print_word(int len, char *word)
 	ft_putchar(' ');
 }
 
+void			print_link(char *path, char *name)
+{
+	char	*fullname;
+	char	buf[256];
+	ssize_t	i;
+
+	fullname = get_fullname(path, name);
+	ft_putstr(" -> ");
+	i = readlink(fullname, buf, 256);
+	if (i > -1)
+		buf[i] = '\0';
+	print_file(path, buf);
+	free(fullname);
+}
+
 void			print_fileoptions(char *path, char *name, t_mstat *m)
 {
 	struct stat	st;
@@ -43,6 +58,8 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	print_word(m->gid, get_group(st));
 	print_num(m->size, st.st_size);
 	print_file(path, name);
+	if (S_ISLNK(st.st_mode))
+		print_link(path, name);
 	ft_putchar('\n');
 	free(fullname);
 }

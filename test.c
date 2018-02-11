@@ -10,26 +10,12 @@
 #include "libft/libft.h"
 #include "ft_ls.h"
 
-int main(void)
+
+int 		main(void)
 {
-	struct stat st;
+	char value[100];
 
-	stat("test", &st);
-	ft_putnbr(st.st_mode + S_IRUSR);
-	ft_putstr("-- plus RO\n");
-	ft_putnbr(st.st_mode);
-	ft_putstr("-- ORIG\n");
-	ft_putnbr(S_IRUSR);
-	ft_putstr("-- RO\n");
-	if (st.st_mode & S_IRUSR)
-		ft_putstr("yes my mistress\n");
+	readlink("wow", value, 100);
+	ft_putstr(value);
 
-/*	while(test2[i])
-	{
-		write(1, test2 + i, sizeof(wchar_t));
-		ft_putnbr(i);
-		i++;
-	}*/
-	//ft_putstr("\n");
-	//ft_putnbr(ft_strlen(test));
 }

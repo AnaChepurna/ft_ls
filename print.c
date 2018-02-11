@@ -27,18 +27,35 @@ void		print_title(char *name)
 	ft_putstr(":\n");
 }
 
+void		print_color(char *color, char *name)
+{
+	ft_putstr(BOLD);
+	ft_putstr(color);
+	ft_putstr(name);
+	ft_putstr(RESET);
+}
+
 void		print_file(char *path, char *name)
 {
 	char		*fullname;
 	struct stat	st;
+	char		*color;
 
 	fullname = get_fullname(path, name);
-	if (!stat(fullname, &st))
+	color = NULL;
+	if (!lstat(fullname, &st))
 	{
 		if (S_ISDIR(st.st_mode))
-			ft_putstr(BLUE);
-		ft_putstr(name);
-		ft_putstr(RESET);
+			color = BLUE;
+		else if (S_ISLNK(st.st_mode))
+			color = CYAN;
+		else if ((st.st_mode & S_IXUSR) || (st.st_mode & S_IXGRP)
+			|| (st.st_mode & S_IXOTH))
+			color = GREEN;
+		if (color)
+			print_color(color, name);
+		else
+			ft_putstr(name);
 	}
 	free(fullname);
 }

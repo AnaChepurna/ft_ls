@@ -29,6 +29,7 @@
 # define MAGENTA	"\x1B[35m"
 # define CYAN		"\x1B[36m"
 # define WHIsTE		"\x1B[37m"
+# define BOLD		"\x1B[1m"
 # define RESET		"\x1B[0m"
 
 typedef struct	s_colform
