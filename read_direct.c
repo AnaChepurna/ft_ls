@@ -55,10 +55,13 @@ static t_list	*get_files(char *name)
 void			read_dir(char *path)
 {
 	t_list	*list;
+	char	**files;
 
 	list = get_files(path);
-	print_files(ft_lsttoarr(list), path);
-	//lst_del
+	files = ft_lsttoarr(list);
+	print_files(files, path);
+	ft_arrfree(&files);
+	ft_lstdel(&list, &ft_memclr);
 }
 
 void			handle_dirs(char **dirs)

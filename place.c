@@ -33,6 +33,7 @@ void	place_lists(t_list **file, t_list **dir, char *path, char *name)
 void	make_dir_list(char **arr, char *path)
 {
 	t_list	*dir;
+	char	**dirs;
 
 	dir = NULL;
 	while (*arr)
@@ -42,6 +43,10 @@ void	make_dir_list(char **arr, char *path)
 		arr++;
 	}
 	if (dir)
-		handle_dirs(ft_lsttoarr(dir));
-	//free dir;
+	{
+		dirs = ft_lsttoarr(dir);
+		handle_dirs(dirs);
+		ft_arrfree(&dirs);
+		ft_lstdel(&dir, &ft_memclr);
+	}
 }

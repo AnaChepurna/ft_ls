@@ -12,7 +12,26 @@
 
 #include "ft_ls.h"
 
-int	main(int c, char **v)
+void	process(t_list *dir, t_list *file)
+{
+	char	**dirs;
+	char	**files;
+
+	if (file)
+	{
+		files = ft_lsttoarr(file);
+		print_files(files, NULL);
+		ft_arrfree(&files);
+	}
+	if (dir)
+	{
+		dirs = ft_lsttoarr(dir);
+		handle_dirs(dirs);
+		ft_arrfree(&dirs);
+	}
+}
+
+int		main(int c, char **v)
 {
 	t_list	*file;
 	t_list	*dir;
@@ -30,11 +49,8 @@ int	main(int c, char **v)
 		g_flag->title = 1;
 	if (!file && !dir)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
-	if (file)
-		print_files(ft_lsttoarr(file), NULL);
-	if (dir)
-		handle_dirs(ft_lsttoarr(dir));
-	//free dir
-	//free file
-	//free g_flag
+	process(dir, file);
+	ft_lstdel(&dir, &ft_memclr);
+	ft_lstdel(&file, &ft_memclr);
+	free(g_flag);
 }

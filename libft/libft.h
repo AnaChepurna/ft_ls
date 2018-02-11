@@ -106,5 +106,6 @@ void				ft_strsort(char **arr);
 size_t				ft_arrlen(void **arr);
 void				ft_arrrev(void	**arr);
 size_t				ft_wstrlen(char *str);
+void				ft_memclr(void *ap, size_t n);
 
 #endif

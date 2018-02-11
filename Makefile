@@ -1,5 +1,5 @@
 CC = gcc
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror -ggdb3
 NAME = ft_ls
 SRC = 	main.c \
 	error.c \
