@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-time_t	ctime(char *name)
+time_t	get_time(char *name)
 {
 	struct stat st;
 
@@ -39,7 +39,7 @@ void	time_sort(char *path, char **name)
 		while (name[i])
 		{
 			fullname = get_fullname(path, name[i]);
-			time[i] = ctime(fullname);
+			time[i] = get_time(fullname);
 			free(fullname);
 			i++;
 		}

@@ -24,8 +24,8 @@ void			print_num(int len, unsigned int num)
 
 void			print_word(int len, char *word)
 {
-	print_spaces(len - ft_strlen(word));
 	ft_putstr(word);
+	print_spaces(len - ft_strlen(word));
 	ft_putchar(' ');
 }
 
@@ -56,7 +56,11 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	print_num(m->link, st.st_nlink);
 	print_word(m->uid, get_user(st));
 	print_word(m->gid, get_group(st));
-	print_num(m->size, st.st_size);
+	if (S_ISBLK(st.st_mode) || S_ISCHR(st.st_mode))
+		print_device(m->size, st);
+	else
+		print_num(m->size, st.st_size);
+	print_time(st);
 	print_file(path, name);
 	if (S_ISLNK(st.st_mode))
 		print_link(path, name);

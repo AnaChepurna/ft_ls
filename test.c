@@ -9,13 +9,12 @@
 #include <wchar.h>
 #include "libft/libft.h"
 #include "ft_ls.h"
+#include "time.h"
 
 
 int 		main(void)
 {
-	char value[100];
-
-	readlink("wow", value, 100);
-	ft_putstr(value);
+	time_t t = time(NULL);
+	ft_putendl(ctime(&t));
 
 }

@@ -21,6 +21,7 @@
 # include <sys/stat.h>
 # include <pwd.h>
 # include <grp.h>
+# include <time.h>
 
 # define RED		"\x1B[31m"
 # define GREEN		"\x1B[32m"
@@ -28,7 +29,7 @@
 # define BLUE		"\x1B[34m"
 # define MAGENTA	"\x1B[35m"
 # define CYAN		"\x1B[36m"
-# define WHIsTE		"\x1B[37m"
+# define WHITE		"\x1B[37m"
 # define BOLD		"\x1B[1m"
 # define RESET		"\x1B[0m"
 
@@ -59,7 +60,7 @@ typedef struct s_mstat
 	int			gid;
 	int			size;
 	int			day;
-	off_t		all_size;
+	size_t		blocks;
 }				t_mstat;
 
 t_flag	*g_flag;
@@ -118,6 +119,7 @@ char			*get_fullname(char *path, char *name);
  ** time.c
 */
 void			time_sort(char *path, char **name);
+time_t			get_time(char *name);
 
 /*
  ** mac_columns.c
@@ -127,10 +129,10 @@ void			print_maccolumns(char **arr, char *path);
 /*
  ** print_options.c
 */
-void	print_type(struct stat st);
-void	print_permission(struct stat st);
-char	*get_user(struct stat st);
-char	*get_group(struct stat st);
+void			print_type(struct stat st);
+void			print_permission(struct stat st);
+char			*get_user(struct stat st);
+char			*get_group(struct stat st);
 
 /*
 ** print_options2.c
@@ -139,8 +141,14 @@ int				get_ranks(unsigned int num);
 void			print_fileoptions(char *path, char *name, t_mstat *m);
 
 /*
+** print_options3.c
+*/
+void			print_device(int len, struct stat st);
+void			print_time(struct stat st);
+
+/*
 ** ultimate_stat.c
 */
-void		print_options(char *path, char **arr);
+void			print_options(char *path, char **arr);
 
 #endif

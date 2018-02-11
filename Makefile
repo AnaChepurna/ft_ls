@@ -14,6 +14,7 @@ SRC = 	main.c \
 	mac_columns.c \
 	print_options.c \
 	print_options2.c \
+	print_options3.c \
 	ultimate_stat.c
 
 all: $(NAME)

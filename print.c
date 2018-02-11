@@ -49,19 +49,21 @@ void		print_file(char *path, char *name)
 			color = BLUE;
 		else if (S_ISLNK(st.st_mode))
 			color = CYAN;
+		else if (S_ISFIFO(st.st_mode) || S_ISBLK(st.st_mode)
+			|| S_ISCHR(st.st_mode))
+			color = YELLOW;
+		else if (S_ISSOCK(st.st_mode))
+			color = MAGENTA;
 		else if ((st.st_mode & S_IXUSR) || (st.st_mode & S_IXGRP)
 			|| (st.st_mode & S_IXOTH))
 			color = GREEN;
-		if (color)
-			print_color(color, name);
-		else
-			ft_putstr(name);
+		color ? print_color(color, name) : ft_putstr(name);
 	}
 	free(fullname);
 }
 
 void		print_dirsize(int	size)
 {
-	ft_putnbr(size);
+	ft_putnbr(size / 2);
 	ft_putchar('\n');
 }

@@ -69,7 +69,5 @@ void			handle_dirs(char **dirs)
 		read_dir(*dirs);
 		dirs++;
 	}
-//	free(path);
-//	free(buf);
-//	ft_arrfree(&dirs);
+	//ft_arrfree(&dirs);
 }

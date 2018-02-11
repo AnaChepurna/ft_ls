@@ -2,12 +2,21 @@
 
 void	print_type(struct stat st)
 {
-	if(S_ISREG(st.st_mode))
-		ft_putchar('-');
-	else if (S_ISDIR(st.st_mode))
+	if (S_ISDIR(st.st_mode))
 		ft_putchar('d');
 	else if (S_ISLNK(st.st_mode))
 		ft_putchar('l');
+	else if (S_ISFIFO(st.st_mode))
+		ft_putchar('f');
+	else if (S_ISBLK(st.st_mode))
+		ft_putchar('b');
+	else if (S_ISCHR(st.st_mode))
+		ft_putchar('c');
+	else if (S_ISSOCK(st.st_mode))
+		ft_putchar('s');
+	else
+		ft_putchar('-');
+
 }
 
 void	write_or_not(int bool, char c)

@@ -41,7 +41,7 @@ void	make_dir_list(char **arr, char *path)
 			place_lists(NULL, &dir, path, *arr);
 		arr++;
 	}
-	//ft_lstadd(&dir, ft_lst)
 	if (dir)
 		handle_dirs(ft_lsttoarr(dir));
+	//free dir;
 }

@@ -24,6 +24,7 @@ void		sort(char **arr, char *path)
 void		print_files(char **arr, char *path)
 {
 	static int n = 0;
+
 	sort(arr, path);
 	if (n == 1)
 		ft_putstr("\n");
@@ -37,5 +38,5 @@ void		print_files(char **arr, char *path)
 		print_maccolumns(arr, path);
 	if (g_flag->rec)
 		make_dir_list(arr, path);
-	ft_arrfree(&arr);
+	//ft_arrfree(&arr);
 }

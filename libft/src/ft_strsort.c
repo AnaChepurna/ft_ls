@@ -6,9 +6,8 @@ void	ft_strsort(char **arr)
 
 	if (!arr)
 		return ;
-	int r = ft_strlen(arr[0]);
 	i = 0;
-	while (arr[i + 1])
+	while (arr[i] && arr[i + 1])
 	{
 		if (ft_strcmp(arr[i], arr[i + 1]) > 0)
 		{
@@ -19,5 +18,4 @@ void	ft_strsort(char **arr)
 		else
 			i++;
 	}
-	r++;
 }
