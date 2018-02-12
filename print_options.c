@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_options.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 14:16:21 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:16:33 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void	print_type(struct stat st)
@@ -16,7 +28,6 @@ void	print_type(struct stat st)
 		ft_putchar('s');
 	else
 		ft_putchar('-');
-
 }
 
 void	write_or_not(int bool, char c)
@@ -47,7 +58,6 @@ char	*get_user(struct stat st)
 
 	p = getpwuid(st.st_uid);
 	return (p->pw_name);
-	//free?
 }
 
 char	*get_group(struct stat st)
@@ -56,5 +66,4 @@ char	*get_group(struct stat st)
 
 	g = getgrgid(st.st_gid);
 	return (g->gr_name);
-	//free?
 }

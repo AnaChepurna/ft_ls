@@ -24,6 +24,8 @@ t_flag		*new_flag(void)
 		res->l = 0;
 		res->a = 0;
 		res->t = 0;
+		res->columns = 0;
+		res->colors = 0;
 	}
 	return (res);
 }
@@ -42,6 +44,12 @@ void		handle_flags(char *str)
 			g_flag->a = 1;
 		else if (*str == 't')
 			g_flag->t = 1;
+		else if (*str == 'C')
+			g_flag->columns = 1;
+		else if (*str == '1')
+			g_flag->columns = 0;
+		else if (*str == 'G')
+			g_flag->colors = 1;
 		else
 			flag_error(*str);
 		str++;

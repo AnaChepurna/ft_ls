@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_options2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 14:14:25 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:14:38 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 int				get_ranks(unsigned int num)
@@ -26,7 +38,7 @@ void			print_word(int len, char *word)
 {
 	ft_putstr(word);
 	print_spaces(len - ft_strlen(word));
-	ft_putchar(' ');
+	ft_putstr("  ");
 }
 
 void			print_link(char *path, char *name)
@@ -40,7 +52,10 @@ void			print_link(char *path, char *name)
 	i = readlink(fullname, buf, 256);
 	if (i > -1)
 		buf[i] = '\0';
-	print_file(path, buf);
+	if (g_flag->colors)
+		print_file(path, buf);
+	else
+		ft_putstr(buf);
 	free(fullname);
 }
 
@@ -53,6 +68,7 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	lstat(fullname, &st);
 	print_type(st);
 	print_permission(st);
+	ft_putstr(" ");
 	print_num(m->link, st.st_nlink);
 	print_word(m->uid, get_user(st));
 	print_word(m->gid, get_group(st));
@@ -61,7 +77,7 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	else
 		print_num(m->size, st.st_size);
 	print_time(st);
-	print_file(path, name);
+	g_flag->colors ? print_file(path, name) : ft_putstr(name);
 	if (S_ISLNK(st.st_mode))
 		print_link(path, name);
 	ft_putchar('\n');

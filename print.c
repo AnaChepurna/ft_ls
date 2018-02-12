@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 17:41:52 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/26 20:21:03 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:19:04 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void		print_file(char *path, char *name)
 	free(fullname);
 }
 
-void		print_dirsize(int	size)
+void		print_dirsize(int size)
 {
-	ft_putnbr(size / 2);
+	ft_putstr("total ");
+	ft_putnbr(size);
 	ft_putchar('\n');
 }

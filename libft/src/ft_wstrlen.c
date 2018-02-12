@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 14:21:01 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:21:13 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t		ft_wstrlen(char *str)
@@ -8,9 +20,6 @@ size_t		ft_wstrlen(char *str)
 	len = 0;
 	while (*str)
 	{
-		//ft_putendl(ft_itoa_base((int)*str, 2));
-		//ft_putnbr(*str);
-		//ft_putstr("\n");
 		if (*str < 0)
 		{
 			buf = *str;

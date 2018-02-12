@@ -30,12 +30,13 @@ void	place_lists(t_list **file, t_list **dir, char *path, char *name)
 	free(obj);
 }
 
-void	make_dir_list(char **arr, char *path)
+char	**make_dir_list(char **arr, char *path)
 {
 	t_list	*dir;
 	char	**dirs;
 
 	dir = NULL;
+	dirs = NULL;
 	while (*arr)
 	{
 		if (!ft_strequ(*arr, ".") && !ft_strequ(*arr, ".."))
@@ -44,9 +45,9 @@ void	make_dir_list(char **arr, char *path)
 	}
 	if (dir)
 	{
+		ft_putstr("dir lis is no empty\n");
 		dirs = ft_lsttoarr(dir);
-		handle_dirs(dirs);
-		ft_arrfree(&dirs);
 		ft_lstdel(&dir, &ft_memclr);
 	}
+	return(dirs);
 }

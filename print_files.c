@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 19:18:21 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/26 20:20:21 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:18:09 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,24 @@ void		sort(char **arr, char *path)
 void		print_files(char **arr, char *path)
 {
 	static int n = 0;
+	char	**dirs;
 
+	dirs = NULL;
+	if (g_flag->rec)
+		dirs = make_dir_list(arr, path);
 	sort(arr, path);
 	if (n == 1)
 		ft_putstr("\n");
-	else
-		n = 1;
-	if (path && g_flag->title)
+	if (path && g_flag->title && !(!n && !dirs))
 		print_title(path);
 	if (g_flag->l)
 		print_options(path, arr);
 	else
 		print_maccolumns(arr, path);
-	if (g_flag->rec)
-		make_dir_list(arr, path);
-	//ft_arrfree(&arr);
+	n++;
+	if (dirs)
+	{
+		handle_dirs(dirs);
+		ft_arrfree(&dirs);
+	}
 }

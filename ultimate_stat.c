@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ultimate_stat.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 14:05:20 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:36:18 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 t_mstat		*new_mstat(void)
@@ -28,7 +40,8 @@ int			full_mstat(struct stat st, t_mstat *m, off_t *size, nlink_t *link)
 		*size = *size < st.st_size ? st.st_size : *size;
 	m->blocks += st.st_blocks;
 	*link = *link < st.st_nlink ? st.st_nlink : *link;
-	m->uid = ((int)(i = ft_strlen(get_user(st)))) > m->uid ? (int)i : m->uid;
+	if ((int)(i = ft_strlen(get_user(st))) > m->uid)
+		m->uid = i;
 	if ((int)(i = ft_strlen(get_group(st))) > m->gid)
 		m->gid = i;
 	return (x);

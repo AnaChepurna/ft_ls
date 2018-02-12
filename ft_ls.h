@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 18:42:37 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/26 20:18:10 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:24:47 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct	s_colform
 	int			*widths;
 }				t_colform;
 
-
 typedef struct	s_flag
 {
 	int			title;
@@ -51,9 +50,11 @@ typedef struct	s_flag
 	int			l;
 	int			a;
 	int			t;
+	int			columns;
+	int			colors;
 }				t_flag;
 
-typedef struct s_mstat
+typedef struct	s_mstat
 {
 	int			link;
 	int			uid;
@@ -63,7 +64,7 @@ typedef struct s_mstat
 	size_t		blocks;
 }				t_mstat;
 
-t_flag	*g_flag;
+t_flag			*g_flag;
 
 /*
  ** colform.c
@@ -92,8 +93,9 @@ void			error_arg(char *arg);
 /*
  ** place.c
 */
-void			make_dir_list(char **arr, char *name);
-void			place_lists(t_list **file, t_list **dir, char *path, char *name);
+char			**make_dir_list(char **arr, char *name);
+void			place_lists(t_list **file, t_list **dir,
+		char *path, char *name);
 
 /*
  ** print_files.c

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mac_columns.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 13:27:24 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:20:06 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static size_t	find_maxlen(char **arr)
@@ -21,7 +33,7 @@ static void		print_format(int columns, size_t len, char **arr, char *path)
 	int	j;
 	int	number;
 	int	lines;
-	int	index;
+	int	in;
 
 	number = ft_arrlen((void **)arr);
 	lines = number / columns + (number % columns ? 1 : 0);
@@ -29,13 +41,13 @@ static void		print_format(int columns, size_t len, char **arr, char *path)
 	while (i < lines)
 	{
 		j = 0;
-		index = i + j * lines;
-		while (index < number)
+		in = i + j * lines;
+		while (in < number)
 		{
-			print_file(path, arr[index]);
-			index += lines;
-			if (++j != columns && number > index)
-				print_spaces(len - ft_wstrlen(arr[index - lines]));
+			g_flag->colors ? print_file(path, arr[in]) : ft_putstr(arr[in]);
+			in += lines;
+			if (++j != columns && number > in)
+				print_spaces(len - ft_wstrlen(arr[in - lines]));
 			else
 				j = columns;
 		}
@@ -50,11 +62,16 @@ void			print_maccolumns(char **arr, char *path)
 	size_t	width;
 	int		columns;
 
-	len = find_maxlen(arr) + 2;
+	len = find_maxlen(arr) + 1;
 	width = get_width();
-	if (len > width)
+	if (!g_flag->columns)
 		columns = 1;
 	else
-		columns = width / len;
+	{
+		if (len > width)
+			columns = 1;
+		else
+			columns = width / len;
+	}
 	print_format(columns, len, arr, path);
 }

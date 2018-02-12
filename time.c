@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/12 14:10:02 by achepurn          #+#    #+#             */
+/*   Updated: 2018/02/12 14:10:05 by achepurn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 time_t	get_time(char *name)
@@ -8,9 +20,9 @@ time_t	get_time(char *name)
 	return (st.st_ctime);
 }
 
-void	key_sort(void	**value, void	**key)
+void	key_sort(void **value, void **key)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (value[i + 1] && key[i + 1])
@@ -31,7 +43,7 @@ void	time_sort(char *path, char **name)
 {
 	time_t	*time;
 	char	*fullname;
-	int	i;
+	int		i;
 
 	if ((time = (time_t *)malloc(sizeof(time_t) * ft_arrlen((void **)name))))
 	{

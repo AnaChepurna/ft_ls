@@ -1,0 +1,1 @@
+norminette | grep -B 1 Error

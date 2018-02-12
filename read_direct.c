@@ -6,13 +6,13 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 19:45:18 by achepurn          #+#    #+#             */
-/*   Updated: 2018/01/26 20:25:23 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/02/12 14:13:17 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-char	*get_fullname(char *path, char *name)
+char			*get_fullname(char *path, char *name)
 {
 	char	*res;
 	char	*buf;
@@ -27,13 +27,13 @@ char	*get_fullname(char *path, char *name)
 	res = ft_strjoin(buf, name);
 	free(buf);
 	return (res);
-}	
+}
 
 static t_list	*get_files(char *name)
 {
-	DIR		*dir;
-	struct	dirent *file;
-	t_list	*list;
+	DIR				*dir;
+	struct dirent	*file;
+	t_list			*list;
 
 	dir = opendir(name);
 	if (!dir)
@@ -66,11 +66,12 @@ void			read_dir(char *path)
 
 void			handle_dirs(char **dirs)
 {
+	if (!dirs)
+		return ;
 	sort(dirs, NULL);
 	while (*dirs)
 	{
 		read_dir(*dirs);
 		dirs++;
 	}
-	//ft_arrfree(&dirs);
 }
