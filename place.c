@@ -17,7 +17,7 @@ void	place_lists(t_list **file, t_list **dir, char *path, char *name)
 	struct stat st;
 	char		*obj;
 
-	obj = path ? get_fullname(path, name) : ft_strdup(name);
+	obj = get_fullname(path, name);
 	if (!stat(obj, &st))
 	{
 		if (S_ISDIR(st.st_mode))
@@ -40,7 +40,7 @@ char	**make_dir_list(char **arr, char *path)
 	while (*arr)
 	{
 		if (!ft_strequ(*arr, ".") && !ft_strequ(*arr, ".."))
-			place_lists(NULL, &dir, path, *arr);
+			place_lists(NULL, &dir, NULL, *arr);
 		arr++;
 	}
 	if (dir)
@@ -48,5 +48,6 @@ char	**make_dir_list(char **arr, char *path)
 		dirs = ft_lsttoarr(dir);
 		ft_lstdel(&dir, &ft_memclr);
 	}
+	path++;
 	return(dirs);
 }

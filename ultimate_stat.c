@@ -49,7 +49,7 @@ int			full_mstat(struct stat st, t_mstat *m, off_t *size, nlink_t *link)
 
 void		ultimate_stat(char *path, char **arr, t_mstat *m)
 {
-	char		*fullname;
+	//char		*fullname;
 	off_t		size;
 	nlink_t		link;
 	struct stat	st;
@@ -59,14 +59,16 @@ void		ultimate_stat(char *path, char **arr, t_mstat *m)
 	link = 0;
 	while (*arr)
 	{
-		fullname = get_fullname(path, *arr);
-		lstat(fullname, &st);
+		//fullname = get_fullname(path, *arr);
+		lstat(*arr, &st);
 		x = full_mstat(st, m, &size, &link);
-		free(fullname);
+		//free(fullname);
 		arr++;
 	}
 	m->size = x > get_ranks(size) ? x : get_ranks(size);
 	m->link = get_ranks(link);
+	//
+	path++;
 }
 
 void		print_options(char *path, char **arr)

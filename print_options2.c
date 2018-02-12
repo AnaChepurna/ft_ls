@@ -43,29 +43,29 @@ void			print_word(int len, char *word)
 
 void			print_link(char *path, char *name)
 {
-	char	*fullname;
+	//char	*fullname;
 	char	buf[256];
 	ssize_t	i;
 
-	fullname = get_fullname(path, name);
+	//fullname = get_fullname(path, name);
 	ft_putstr(" -> ");
-	i = readlink(fullname, buf, 256);
+	i = readlink(name, buf, 256);
 	if (i > -1)
 		buf[i] = '\0';
 	if (g_flag->colors)
 		print_file(path, buf);
 	else
 		ft_putstr(buf);
-	free(fullname);
+	//free(fullname);
 }
 
 void			print_fileoptions(char *path, char *name, t_mstat *m)
 {
 	struct stat	st;
-	char		*fullname;
+	//char		*fullname;
 
-	fullname = get_fullname(path, name);
-	lstat(fullname, &st);
+	//fullname = get_fullname(path, name);
+	lstat(name, &st);
 	print_type(st);
 	print_permission(st);
 	ft_putstr(" ");
@@ -81,5 +81,5 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	if (S_ISLNK(st.st_mode))
 		print_link(path, name);
 	ft_putchar('\n');
-	free(fullname);
+	//free(fullname);
 }
