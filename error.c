@@ -26,3 +26,10 @@ void	error_arg(char *arg)
 	ft_putstr(arg);
 	ft_putstr("\"!\n");
 }
+
+void	error_permission(char *name)
+{
+	ft_putstr("./ft_ls: ");
+	ft_putstr(name);
+	ft_putstr(": Permission denied\n");
+}

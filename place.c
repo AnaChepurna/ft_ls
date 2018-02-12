@@ -45,7 +45,6 @@ char	**make_dir_list(char **arr, char *path)
 	}
 	if (dir)
 	{
-		ft_putstr("dir lis is no empty\n");
 		dirs = ft_lsttoarr(dir);
 		ft_lstdel(&dir, &ft_memclr);
 	}

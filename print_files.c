@@ -30,14 +30,17 @@ void		print_files(char **arr, char *path)
 	if (g_flag->rec)
 		dirs = make_dir_list(arr, path);
 	sort(arr, path);
-	if (n == 1)
+	if (n)
 		ft_putstr("\n");
-	if (path && g_flag->title && !(!n && !dirs))
+	if (path && (g_flag->title || (!(!n && !dirs) && g_flag->rec))
+		&& !ft_strequ(path, "."))
 		print_title(path);
-	if (g_flag->l)
-		print_options(path, arr);
-	else
-		print_maccolumns(arr, path);
+	if (errno == 13)
+	{
+		error_permission(path);
+		errno = 0;
+	}
+	g_flag->l ? print_options(path, arr) : print_maccolumns(arr, path);
 	n++;
 	if (dirs)
 	{

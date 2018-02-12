@@ -30,28 +30,38 @@ t_flag		*new_flag(void)
 	return (res);
 }
 
-void		handle_flags(char *str)
+void		flag_values(char *str)
 {
+	if (*str == 'r')
+		g_flag->r = 1;
+	else if (*str == 'R')
+		g_flag->rec = 1;
+	else if (*str == 'l')
+		g_flag->l = 1;
+	else if (*str == 'a')
+		g_flag->a = 1;
+	else if (*str == 't')
+		g_flag->t = 1;
+	else if (*str == 'C')
+		g_flag->columns = 1;
+	else if (*str == '1')
+		g_flag->columns = 0;
+	else if (*str == 'G')
+		g_flag->colors = 1;
+	else
+		flag_error(*str);
+}
+
+int			handle_flags(char *str)
+{
+	if (ft_strequ(str - 1, "--"))
+		return (1);
+	if (!(*str))
+		return (2);
 	while (*str)
 	{
-		if (*str == 'r')
-			g_flag->r = 1;
-		else if (*str == 'R')
-			g_flag->rec = 1;
-		else if (*str == 'l')
-			g_flag->l = 1;
-		else if (*str == 'a')
-			g_flag->a = 1;
-		else if (*str == 't')
-			g_flag->t = 1;
-		else if (*str == 'C')
-			g_flag->columns = 1;
-		else if (*str == '1')
-			g_flag->columns = 0;
-		else if (*str == 'G')
-			g_flag->colors = 1;
-		else
-			flag_error(*str);
+		flag_values(str);
 		str++;
 	}
+	return (0);
 }

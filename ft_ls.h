@@ -82,13 +82,14 @@ int				get_width(void);
  ** flag.c
 */
 t_flag			*new_flag(void);
-void			handle_flags(char *str);
+int				handle_flags(char *str);
 
 /*
  ** errors.c
 */
 void			flag_error(char c);
 void			error_arg(char *arg);
+void			error_permission(char *name);
 
 /*
  ** place.c

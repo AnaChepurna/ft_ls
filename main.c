@@ -36,16 +36,22 @@ int		main(int c, char **v)
 	t_list	*file;
 	t_list	*dir;
 	int		i;
+	int		x;
 
 	g_flag = new_flag();
 	file = NULL;
 	dir = NULL;
 	i = 0;
-	while (++i < c && v[i][0] == '-')
-		handle_flags(v[i] + 1);
+	x = 0;
+	while (++i < c && v[i][0] == '-' && !x)
+	{
+		x = handle_flags(v[i] + 1);
+		if (x == 2)
+			i--;
+	}
 	while (i < c)
 		place_lists(&file, &dir, NULL, v[i++]);
-	if ((file && dir) || (dir && dir->next) || g_flag->rec)
+	if ((file && dir) || (dir && dir->next))
 		g_flag->title = 1;
 	if (!file && !dir)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
