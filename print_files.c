@@ -23,8 +23,8 @@ void		sort(char **arr, char *path)
 
 void		print_files(char **arr, char *path)
 {
-	static int n = 0;
-	char	**dirs;
+	static int	n = 0;
+	char		**dirs;
 
 	dirs = NULL;
 	if (g_flag->rec)

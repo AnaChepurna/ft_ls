@@ -48,5 +48,5 @@ char	**make_dir_list(char **arr, char *path)
 		dirs = ft_lsttoarr(dir);
 		ft_lstdel(&dir, &ft_memclr);
 	}
-	return(dirs);
+	return (dirs);
 }

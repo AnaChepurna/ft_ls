@@ -29,6 +29,8 @@ void	process(t_list *dir, t_list *file)
 		handle_dirs(dirs);
 		ft_arrfree(&dirs);
 	}
+	ft_lstdel(&dir, &ft_memclr);
+	ft_lstdel(&file, &ft_memclr);
 }
 
 int		main(int c, char **v)
@@ -56,7 +58,5 @@ int		main(int c, char **v)
 	if (!file && !dir)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
 	process(dir, file);
-	ft_lstdel(&dir, &ft_memclr);
-	ft_lstdel(&file, &ft_memclr);
 	free(g_flag);
 }
