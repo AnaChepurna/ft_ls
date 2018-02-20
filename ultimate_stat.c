@@ -75,7 +75,8 @@ void		print_options(char *path, char **arr)
 
 	m = new_mstat();
 	ultimate_stat(path, arr, m);
-	print_dirsize(m->blocks);
+	if (path && *arr)
+		print_dirsize(m->blocks);
 	while (*arr)
 	{
 		print_fileoptions(path, *arr, m);

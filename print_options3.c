@@ -62,7 +62,6 @@ void		print_time(struct stat st)
 
 	t = st.st_mtime;
 	d = time(NULL);
-
 	diff = 0;
 	if (t > d || d - t > 15779000)
 		diff = 1;

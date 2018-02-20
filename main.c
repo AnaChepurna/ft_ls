@@ -12,37 +12,68 @@
 
 #include "ft_ls.h"
 
-void	process(t_list *dir, t_list *file)
+void	errs_print(char **arr)
 {
-	char	**dirs;
-	char	**files;
+	int	i;
 
+	i = 0;
+	if (ft_strequ("", *arr))
+	{
+		error_arg("fts_open");
+		exit(1);
+	}
+	while (arr[i])
+		error_arg(arr[i++]);
+}
+
+void	process(t_list *dir, t_list *file, t_list *err)
+{
+	char	**arr;
+
+	if (err)
+	{
+		arr = ft_lsttoarr(err);
+		ft_strsort(arr);
+		errs_print(arr);
+		ft_arrfree(&arr);
+	}
 	if (file)
 	{
-		files = ft_lsttoarr(file);
-		print_files(files, NULL);
-		ft_arrfree(&files);
+		arr = ft_lsttoarr(file);
+		print_files(arr, NULL);
+		ft_arrfree(&arr);
 	}
 	if (dir)
 	{
-		dirs = ft_lsttoarr(dir);
-		handle_dirs(dirs);
-		ft_arrfree(&dirs);
+		arr = ft_lsttoarr(dir);
+		handle_dirs(arr);
+		ft_arrfree(&arr);
 	}
-	ft_lstdel(&dir, &ft_memclr);
-	ft_lstdel(&file, &ft_memclr);
+}
+
+void	clear_lists(int x, t_list **file, t_list **dir, t_list **err)
+{
+	if (x)
+	{
+		ft_lstdel(dir, &ft_memclr);
+		ft_lstdel(file, &ft_memclr);
+		ft_lstdel(err, &ft_memclr);
+	}
+	*file = NULL;
+	*dir = NULL;
+	*err = NULL;
 }
 
 int		main(int c, char **v)
 {
 	t_list	*file;
 	t_list	*dir;
+	t_list	*err;
 	int		i;
 	int		x;
 
 	g_flag = new_flag();
-	file = NULL;
-	dir = NULL;
+	clear_lists(0, &file, &dir, &err);
 	i = 0;
 	x = 0;
 	while (++i < c && v[i][0] == '-' && !x)
@@ -52,11 +83,12 @@ int		main(int c, char **v)
 			i--;
 	}
 	while (i < c)
-		place_lists(&file, &dir, NULL, v[i++]);
-	if ((file && dir) || (dir && dir->next))
+		place_lists(&file, &dir, &err, v[i++]);
+	if (((file || err) && dir) || (dir && dir->next))
 		g_flag->title = 1;
-	if (!file && !dir)
+	if (!file && !dir && !err)
 		ft_lstadd(&dir, ft_lstnew(".", 1));
-	process(dir, file);
+	process(dir, file, err);
+	clear_lists(1, &file, &dir, &err);
 	free(g_flag);
 }

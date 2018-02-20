@@ -42,13 +42,22 @@ void	print_permission(struct stat st)
 {
 	write_or_not(st.st_mode & S_IRUSR, 'r');
 	write_or_not(st.st_mode & S_IWUSR, 'w');
-	write_or_not(st.st_mode & S_IXUSR, 'x');
+	if (st.st_mode & 2048)
+		!(st.st_mode & 511) ? ft_putchar('S') : ft_putchar('s');
+	else
+		write_or_not(st.st_mode & S_IXUSR, 'x');
 	write_or_not(st.st_mode & S_IRGRP, 'r');
 	write_or_not(st.st_mode & S_IWGRP, 'w');
-	write_or_not(st.st_mode & S_IXGRP, 'x');
+	if (st.st_mode & 1024)
+		!(st.st_mode & 511) ? ft_putchar('S') : ft_putchar('s');
+	else
+		write_or_not(st.st_mode & S_IXGRP, 'x');
 	write_or_not(st.st_mode & S_IROTH, 'r');
 	write_or_not(st.st_mode & S_IWOTH, 'w');
-	write_or_not(st.st_mode & S_IXOTH, 'x');
+	if (st.st_mode & 512)
+		!(st.st_mode & 511) ? ft_putchar('T') : ft_putchar('t');
+	else
+		write_or_not(st.st_mode & S_IXOTH, 'x');
 	ft_putchar(' ');
 }
 

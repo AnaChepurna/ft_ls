@@ -96,7 +96,7 @@ void			error_permission(char *name);
 */
 char			**make_dir_list(char **arr, char *name);
 void			place_lists(t_list **file, t_list **dir,
-		char *path, char *name);
+		t_list **err, char *name);
 
 /*
  ** print_files.c

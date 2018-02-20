@@ -12,36 +12,38 @@
 
 #include "ft_ls.h"
 
-void	place_lists(t_list **file, t_list **dir, char *path, char *name)
+void	place_lists(t_list **file, t_list **dir, t_list **err, char *name)
 {
 	struct stat st;
-	char		*obj;
 
-	obj = path ? get_fullname(path, name) : ft_strdup(name);
-	if (!stat(obj, &st))
+	if (!stat(name, &st))
 	{
 		if (S_ISDIR(st.st_mode))
-			ft_lstadd(dir, ft_lstnew(obj, ft_strlen(obj) + 1));
+			ft_lstadd(dir, ft_lstnew(name, ft_strlen(name) + 1));
 		else if (file)
-			ft_lstadd(file, ft_lstnew(obj, ft_strlen(obj) + 1));
+			ft_lstadd(file, ft_lstnew(name, ft_strlen(name) + 1));
 	}
+	else if (!lstat(name, &st))
+		ft_lstadd(file, ft_lstnew(name, ft_strlen(name) + 1));
 	else
-		error_arg(name);
-	free(obj);
+		ft_lstadd(err, ft_lstnew(name, ft_strlen(name) + 1));
 }
 
 char	**make_dir_list(char **arr, char *path)
 {
 	t_list	*dir;
 	char	**dirs;
+	char	*fullname;
 
 	dir = NULL;
 	dirs = NULL;
 	while (*arr)
 	{
+		fullname = get_fullname(path, *arr);
 		if (!ft_strequ(*arr, ".") && !ft_strequ(*arr, ".."))
-			place_lists(NULL, &dir, path, *arr);
+			place_lists(NULL, &dir, NULL, fullname);
 		arr++;
+		free(fullname);
 	}
 	if (dir)
 	{

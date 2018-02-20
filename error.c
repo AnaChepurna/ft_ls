@@ -12,24 +12,38 @@
 
 #include "ft_ls.h"
 
+void	put_errchar(char s)
+{
+	write(2, &s, 1);
+}
+
+void	put_err(char *str)
+{
+	while (*str)
+	{
+		write(2, str, 1);
+		str++;
+	}
+}
+
 void	flag_error(char c)
 {
-	ft_putstr("error! wrong flag \"");
-	ft_putchar(c);
-	ft_putstr("\" is found!\n");
+	put_err("ls: illegal option -- ");
+	put_errchar(c);
+	put_err("\nusage: ft_ls [-GCRalrt1] [file ...]\n");
 	exit(1);
 }
 
 void	error_arg(char *arg)
 {
-	ft_putstr("There is no file or directory named \"");
-	ft_putstr(arg);
-	ft_putstr("\"!\n");
+	put_err("ls: ");
+	put_err(arg);
+	put_err(": No such file or directory\n");
 }
 
 void	error_permission(char *name)
 {
-	ft_putstr("./ft_ls: ");
-	ft_putstr(name);
-	ft_putstr(": Permission denied\n");
+	put_err("ls: ");
+	put_err(name);
+	put_err(": Permission denied\n");
 }
