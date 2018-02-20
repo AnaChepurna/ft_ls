@@ -22,6 +22,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+#include <sys/xattr.h>
 
 # define RED		"\x1B[31m"
 # define GREEN		"\x1B[32m"
@@ -148,6 +149,7 @@ void			print_fileoptions(char *path, char *name, t_mstat *m);
 */
 void			print_device(int len, struct stat st);
 void			print_time(struct stat st);
+void			print_xattr(char *name);
 
 /*
 ** ultimate_stat.c

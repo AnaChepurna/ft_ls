@@ -68,7 +68,8 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	lstat(fullname, &st);
 	print_type(st);
 	print_permission(st);
-	ft_putstr(" ");
+	//ft_putstr(" ");
+	print_xattr(fullname);
 	print_num(m->link, st.st_nlink);
 	print_word(m->uid, get_user(st));
 	print_word(m->gid, get_group(st));

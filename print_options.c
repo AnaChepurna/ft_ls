@@ -58,7 +58,6 @@ void	print_permission(struct stat st)
 		!(st.st_mode & 511) ? ft_putchar('T') : ft_putchar('t');
 	else
 		write_or_not(st.st_mode & S_IXOTH, 'x');
-	ft_putchar(' ');
 }
 
 char	*get_user(struct stat st)
