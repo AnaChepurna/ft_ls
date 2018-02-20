@@ -15,16 +15,14 @@
 void		print_device(int len, struct stat st)
 {
 	char	*x;
-	char	a;
-	char	b;
 
-	print_spaces(len - 4);
+	print_spaces(len - 8);
 	x = (char *)&st.st_rdev;
-	a = *x;
-	b = *(x + 1);
-	a < b ? ft_putnbr(a) : ft_putnbr(b);
+	print_spaces(3 - get_ranks(x[3]));
+	ft_putnbr(x[3]);
 	ft_putstr(", ");
-	a > b ? ft_putnbr(a) : ft_putnbr(b);
+	print_spaces(3 - get_ranks(x[0]));
+	ft_putnbr(x[0]);
 	ft_putstr(" ");
 }
 

@@ -35,7 +35,7 @@ int			full_mstat(struct stat st, t_mstat *m, off_t *size, nlink_t *link)
 
 	x = 0;
 	if (S_ISBLK(st.st_mode) || S_ISCHR(st.st_mode))
-		x = 4;
+		x = 8;
 	else
 		*size = *size < st.st_size ? st.st_size : *size;
 	m->blocks += st.st_blocks;

@@ -43,7 +43,20 @@ void	error_arg(char *arg)
 
 void	error_permission(char *name)
 {
+	int	i;
+	int	s;
+
+	i = 0;
+	s = 0;
+	while (name[i])
+	{
+		if (name[i] == '/')
+			s = i;
+		i++;
+	}
+	if (s)
+		s++;
 	put_err("ls: ");
-	put_err(name);
+	put_err(name + s);
 	put_err(": Permission denied\n");
 }

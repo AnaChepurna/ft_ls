@@ -33,7 +33,8 @@ void		print_files(char **arr, char *path)
 	if (n)
 		ft_putstr("\n");
 	if (path && (g_flag->title || (!(!n && !dirs) && g_flag->rec))
-		&& !(!n && g_flag->rec && ft_strequ(path, ".")))
+		&& !(!n && g_flag->rec && ft_strequ(path, "."))
+		&& !(!n && g_flag->rec && !g_flag->title))
 		print_title(path);
 	if (errno == 13)
 	{
