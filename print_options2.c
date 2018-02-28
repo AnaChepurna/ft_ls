@@ -78,7 +78,7 @@ void			print_fileoptions(char *path, char *name, t_mstat *m)
 	else
 		print_num(m->size, st.st_size);
 	print_time(st);
-	g_flag->colors ? print_file(path, name) : ft_putstr(name);
+	print_file(path, name);
 	if (S_ISLNK(st.st_mode))
 		print_link(path, name);
 	ft_putchar('\n');

@@ -54,6 +54,7 @@ typedef struct	s_flag
 	int			columns;
 	int			colors;
 	int			d;
+	int			p;
 }				t_flag;
 
 typedef struct	s_mstat

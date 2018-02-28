@@ -44,7 +44,7 @@ static void		print_format(int columns, size_t len, char **arr, char *path)
 		in = i + j * lines;
 		while (in < number)
 		{
-			g_flag->colors ? print_file(path, arr[in]) : ft_putstr(arr[in]);
+			print_file(path, arr[in]);
 			in += lines;
 			if (++j != columns && number > in)
 				print_spaces(len - ft_wstrlen(arr[in - lines]));
