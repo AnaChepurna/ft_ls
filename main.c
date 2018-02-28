@@ -91,4 +91,5 @@ int		main(int c, char **v)
 	process(dir, file, err);
 	clear_lists(1, &file, &dir, &err);
 	free(g_flag);
+	return (0);
 }

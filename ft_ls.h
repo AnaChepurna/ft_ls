@@ -57,6 +57,7 @@ typedef struct	s_flag
 	int			p;
 	int			sort;
 	int			sizesort;
+	int			aa;
 }				t_flag;
 
 typedef struct	s_mstat

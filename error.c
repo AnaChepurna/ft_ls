@@ -30,7 +30,7 @@ void	flag_error(char c)
 {
 	put_err("ls: illegal option -- ");
 	put_errchar(c);
-	put_err("\nusage: ft_ls [-GCRalrt1] [file ...]\n");
+	put_err("\nusage: ft_ls [-ACGRSUadlprt1] [file ...]\n");
 	exit(1);
 }
 

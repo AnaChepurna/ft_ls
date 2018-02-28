@@ -34,6 +34,7 @@ static t_list	*get_files(char *name)
 	DIR				*dir;
 	struct dirent	*file;
 	t_list			*list;
+	char			*fn;
 
 	dir = opendir(name);
 	if (!dir)
@@ -41,12 +42,13 @@ static t_list	*get_files(char *name)
 	list = NULL;
 	while ((file = readdir(dir)))
 	{
+		fn = file->d_name;
 		if (g_flag->a)
-			ft_lstaddend(&list,
-					ft_lstnew(file->d_name, ft_strlen(file->d_name) + 1));
-		else if (file->d_name[0] != '.')
-			ft_lstaddend(&list,
-					ft_lstnew(file->d_name, ft_strlen(file->d_name) + 1));
+			ft_lstaddend(&list, ft_lstnew(fn, ft_strlen(fn) + 1));
+		else if (g_flag->aa && !ft_strequ(fn, ".") && !ft_strequ(fn, ".."))
+			ft_lstaddend(&list, ft_lstnew(fn, ft_strlen(fn) + 1));
+		else if (fn[0] != '.')
+			ft_lstaddend(&list, ft_lstnew(fn, ft_strlen(fn) + 1));
 	}
 	closedir(dir);
 	return (list);
