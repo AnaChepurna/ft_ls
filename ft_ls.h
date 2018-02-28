@@ -56,6 +56,7 @@ typedef struct	s_flag
 	int			d;
 	int			p;
 	int			sort;
+	int			sizesort;
 }				t_flag;
 
 typedef struct	s_mstat
@@ -127,6 +128,7 @@ char			*get_fullname(char *path, char *name);
 */
 void			time_sort(char *path, char **name);
 time_t			get_time(char *name);
+void			size_sort(char *path, char **name);
 
 /*
  ** mac_columns.c

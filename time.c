@@ -20,12 +20,20 @@ time_t	get_time(char *name)
 	return (st.st_mtime);
 }
 
+off_t	get_size(char *name)
+{
+	struct stat st;
+
+	lstat(name, &st);
+	return (st.st_size);
+}
+
 void	key_sort(void **value, void **key)
 {
 	int		i;
 
 	i = 0;
-	while (value[i] && value[i + 1] && key[i] && key[i + 1])
+	while (value[i] && value[i + 1])
 	{
 		if (key[i] < key[i + 1])
 		{
@@ -61,4 +69,28 @@ void	time_sort(char *path, char **name)
 		key_sort((void **)name, (void **)time);
 		free(time);
 	}
+}
+
+void	size_sort(char *path, char **name)
+{
+	off_t	*size;
+	char	*fullname;
+	int		i;
+	size_t	len;
+
+	len = ft_arrlen((void **)name);
+	if ((size = (off_t *)malloc(sizeof(off_t) * (len + 1))))
+	{
+		i = 0;
+		while (name[i])
+		{
+			fullname = get_fullname(path, name[i]);
+			size[i] = get_size(fullname);
+			free(fullname);
+			i++;
+		}
+		size[len] = 0;
+		key_sort((void **)name, (void **)size);
+		free(size);
+	}	
 }

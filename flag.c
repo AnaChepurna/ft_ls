@@ -29,6 +29,7 @@ t_flag		*new_flag(void)
 		res->d = 0;
 		res->p = 0;
 		res->sort = 1;
+		res->sizesort = 0;
 	}
 	return (res);
 }
@@ -41,6 +42,8 @@ void		flag_values_bonus(char *str)
 		g_flag->p = 1;
 	else if (*str == 'U')
 		g_flag->sort = 0;
+	else if (*str == 'S')
+		g_flag->sizesort = 1;
 	else
 		flag_error(*str);
 }

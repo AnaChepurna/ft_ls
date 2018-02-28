@@ -18,6 +18,8 @@ void		sort(char **arr, char *path)
 		ft_strsort(arr);
 	if (g_flag->t)
 		time_sort(path, arr);
+	if (g_flag->sizesort)
+		size_sort(path, arr);
 	if (g_flag->r && (g_flag->sort || g_flag->t))
 		ft_arrrev((void **)arr);
 }
