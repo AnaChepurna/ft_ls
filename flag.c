@@ -26,8 +26,17 @@ t_flag		*new_flag(void)
 		res->t = 0;
 		res->columns = 0;
 		res->colors = 0;
+		res->d = 0;
 	}
 	return (res);
+}
+
+void		flag_values_bonus(char *str)
+{
+	if (*str == 'd')
+		g_flag->d = 1;
+	else
+		flag_error(*str);
 }
 
 void		flag_values(char *str)
@@ -48,8 +57,8 @@ void		flag_values(char *str)
 		g_flag->columns = 0;
 	else if (*str == 'G')
 		g_flag->colors = 1;
-	else
-		flag_error(*str);
+	else 
+		flag_values_bonus(str);
 }
 
 int			handle_flags(char *str)

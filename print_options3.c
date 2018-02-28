@@ -71,7 +71,7 @@ void		print_xattr(char *name)
 	ssize_t	n;
 	char	list[512];
 
-	n = listxattr(name, list, 512, XATTR_NOFOLLOW);
+	n = listxattr(name, list, 512);//, XATTR_NOFOLLOW);
 	//ft_putstr(list);
 	//ft_putstr(" ");
 	//ft_putnbr(n);

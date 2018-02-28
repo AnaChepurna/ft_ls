@@ -87,7 +87,7 @@ int		main(int c, char **v)
 	if (((file || err) && dir) || (dir && dir->next))
 		g_flag->title = 1;
 	if (!file && !dir && !err)
-		ft_lstadd(&dir, ft_lstnew(".", 1));
+		place_lists(&file, &dir, &err, ".");
 	process(dir, file, err);
 	clear_lists(1, &file, &dir, &err);
 	free(g_flag);

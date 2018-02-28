@@ -18,7 +18,7 @@ void	place_lists(t_list **file, t_list **dir, t_list **err, char *name)
 
 	if (!stat(name, &st))
 	{
-		if (S_ISDIR(st.st_mode))
+		if (S_ISDIR(st.st_mode) && !g_flag->d)
 			ft_lstadd(dir, ft_lstnew(name, ft_strlen(name) + 1));
 		else if (file)
 			ft_lstadd(file, ft_lstnew(name, ft_strlen(name) + 1));
