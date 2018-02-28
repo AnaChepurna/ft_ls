@@ -28,6 +28,7 @@ t_flag		*new_flag(void)
 		res->colors = 0;
 		res->d = 0;
 		res->p = 0;
+		res->sort = 1;
 	}
 	return (res);
 }
@@ -38,6 +39,8 @@ void		flag_values_bonus(char *str)
 		g_flag->d = 1;
 	else if (*str == 'p')
 		g_flag->p = 1;
+	else if (*str == 'U')
+		g_flag->sort = 0;
 	else
 		flag_error(*str);
 }
