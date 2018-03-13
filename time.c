@@ -92,5 +92,5 @@ void	size_sort(char *path, char **name)
 		size[len] = 0;
 		key_sort((void **)name, (void **)size);
 		free(size);
-	}	
+	}
 }

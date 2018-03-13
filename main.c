@@ -16,13 +16,7 @@ void	errs_print(char **arr)
 {
 	int	i;
 
-	//ft_putnbr(ft_strlen(*arr));
 	i = 0;
-	//if (ft_strequ("", *arr))
-	//{
-	//	error_arg("fts_open");
-	//	exit(1);
-//}
 	while (arr[i])
 		error_arg(arr[i++]);
 }
@@ -80,8 +74,7 @@ int		main(int c, char **v)
 	while (++i < c && v[i][0] == '-' && !x)
 	{
 		x = handle_flags(v[i] + 1);
-		if (x == 2)
-			i--;
+		i = x == 2 ? i - 1 : i;
 	}
 	while (i < c)
 		place_lists(&file, &dir, &err, v[i++]);

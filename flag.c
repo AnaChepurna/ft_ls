@@ -69,7 +69,7 @@ void		flag_values(char *str)
 		g_flag->columns = 0;
 	else if (*str == 'G')
 		g_flag->colors = 1;
-	else 
+	else
 		flag_values_bonus(str);
 }
 

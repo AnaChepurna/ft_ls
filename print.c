@@ -49,7 +49,7 @@ void		print_color(struct stat st, char *name)
 	ft_putstr(name);
 	if (color)
 		ft_putstr(RESET);
-	}
+}
 
 void		print_file(char *path, char *name)
 {

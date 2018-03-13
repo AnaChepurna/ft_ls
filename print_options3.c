@@ -72,9 +72,6 @@ void		print_xattr(char *name)
 	char	list[512];
 
 	n = listxattr(name, list, 512, XATTR_NOFOLLOW);
-	//ft_putstr(list);
-	//ft_putstr(" ");
-	//ft_putnbr(n);
 	if (n > 0)
 		ft_putstr("@");
 	else

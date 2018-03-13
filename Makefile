@@ -16,16 +16,26 @@ SRC = 	main.c \
 	print_options2.c \
 	print_options3.c \
 	ultimate_stat.c
+OBJ = $(SRC:.c=.o)
+DIR = libft/libft.a
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAG) $(SRC) libft/libft.a -o $(NAME)
+$(NAME): $(DIR) $(OBJ)
+	$(CC) $(OBJ) libft/libft.a -o $(NAME)
 
-fclean: 
-	rm $(NAME)
+%.o: %.c
+	$(CC) -c $(CFLAG) $<
 
-dir:
+clean:
+	rm -rf $(OBJ)
+	make -C libft/ clean
+
+fclean: clean
+	rm -rf $(NAME)
+	make -C libft/ fclean
+
+$(DIR):
 	make -C libft
 
-re: fclean dir all
+re: fclean all

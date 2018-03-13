@@ -22,7 +22,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
-#include <sys/xattr.h>
+# include <sys/xattr.h>
 
 # define RED		"\x1B[31m"
 # define GREEN		"\x1B[32m"
