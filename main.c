@@ -16,12 +16,13 @@ void	errs_print(char **arr)
 {
 	int	i;
 
+	//ft_putnbr(ft_strlen(*arr));
 	i = 0;
-	if (ft_strequ("", *arr))
-	{
-		error_arg("fts_open");
-		exit(1);
-	}
+	//if (ft_strequ("", *arr))
+	//{
+	//	error_arg("fts_open");
+	//	exit(1);
+//}
 	while (arr[i])
 		error_arg(arr[i++]);
 }

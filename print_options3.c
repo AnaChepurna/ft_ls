@@ -6,7 +6,7 @@
 /*   By: achepurn <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 14:17:27 by achepurn          #+#    #+#             */
-/*   Updated: 2018/02/12 14:17:29 by achepurn         ###   ########.fr       */
+/*   Updated: 2018/03/13 13:03:36 by achepurn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		print_xattr(char *name)
 	ssize_t	n;
 	char	list[512];
 
-	n = listxattr(name, list, 512);//, XATTR_NOFOLLOW);
+	n = listxattr(name, list, 512, XATTR_NOFOLLOW);
 	//ft_putstr(list);
 	//ft_putstr(" ");
 	//ft_putnbr(n);
