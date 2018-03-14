@@ -1,9 +1,0 @@
-Usage: ft_ls [-ACGRSUadlprt1] [file ...]
-
-List  information  about  the FILEs (the current directory by default).
-
--a		do not ignore entries starting with .
--A		do not list implied . and ..
--C		list entries by columns
--d		list directories themselves, not their contents
--G		
